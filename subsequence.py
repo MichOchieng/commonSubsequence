@@ -15,11 +15,18 @@ class subsequence:
         for file in next(walk(currentPath), (None, None, []))[2]:
             if re.search("^input_.*.txt",file):
                 self.FILE_LIST.append(file)
-                print(file)
+
+    def getStrings(self,f):
+        try:
+            with open(f ,'r', encoding='utf-8') as file:
+                print(file.readlines())
+        except OSError:
+            print("There was an error opening the file " + f)
         
 
     def run(self):
-        pass
+        for fileName in self.FILE_LIST:
+            self.getStrings(fileName)
 
 if __name__ == "__main__":
     program = subsequence()
