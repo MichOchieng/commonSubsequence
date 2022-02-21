@@ -55,12 +55,13 @@ class subsequence:
                 self.OUTPUT_STRING = char0 + self.OUTPUT_STRING
                 self.lcs(str0[:-1],str1[:-1])
             else:
-                if self.helper(str0,str1[:-1]) >= self.helper(str0[:-1],str1):
+                if self.helper(str0,str1[:-1]) > self.helper(str0[:-1],str1):
                     self.lcs(str0,str1[:-1])
                 else:
                     self.lcs(str0[:-1],str1)
+                
     
-    def helper(self,str0: str,str1: str) -> int:
+    def helper(self,str0: str,str1: str) -> int: # Avoids NoneType in recursive step
         # Used to determine what will produce the longest common subsequence between 
         #  lcs(str0,str1[:-1]) and lcs(str0[:-1],str1)
 
@@ -76,7 +77,7 @@ class subsequence:
                 # Prepend char to output string
                 return 1 + self.helper(str0[:-1],str1[:-1])
             else:
-                if self.helper(str0,str1[:-1]) >= self.helper(str0[:-1],str1):
+                if self.helper(str0,str1[:-1]) > self.helper(str0[:-1],str1):
                     self.helper(str0,str1[:-1])
                 else:
                     self.helper(str0[:-1],str1)
