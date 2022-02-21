@@ -1,5 +1,5 @@
 import re
-from os import walk
+from os      import walk
 from pathlib import Path
 
 class subsequence:
@@ -37,8 +37,10 @@ class subsequence:
     def lcs(self,str0,str1):
         # Itterate over the two strings backwards
         # If two characters are equal add that character to the output string
-        # Else
-        #   determine 
+        # Otherwise
+        #   determine what will produce the longest common subsequence between 
+        #       lcs(STRING_A,STRING_B[:-1]) and lcs(STRING_A[:-1],STRING_B)
+        #   then use that combination in the next iteration of the recursion
 
         if len(str0) > 0 and len(str1) > 0:
             char0 = str0[-1]
@@ -59,7 +61,8 @@ class subsequence:
                     self.lcs(str0[:-1],str1)
     
     def helper(self,str0: str,str1: str) -> int:
-        # Used to determine w
+        # Used to determine what will produce the longest common subsequence between 
+        #  lcs(str0,str1[:-1]) and lcs(str0[:-1],str1)
 
         if len(str0) > 0 and len(str1) > 0:
             char0 = str0[-1]
@@ -83,7 +86,7 @@ class subsequence:
         for fileName in self.FILE_LIST:
             self.getStrings(fileName)
             self.lcs(self.STRING_A,self.STRING_B)
-            print(self.OUTPUT_STRING)
+            print(fileName + " produced a longest common subsequence of: " + self.OUTPUT_STRING)
 
 if __name__ == "__main__":
     program = subsequence()
